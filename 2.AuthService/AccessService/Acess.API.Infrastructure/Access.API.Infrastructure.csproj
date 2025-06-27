@@ -22,8 +22,4 @@
     <ProjectReference Include="..\Acess.API.Domain\Access.API.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Seed\" />
-  </ItemGroup>
-
 </Project>

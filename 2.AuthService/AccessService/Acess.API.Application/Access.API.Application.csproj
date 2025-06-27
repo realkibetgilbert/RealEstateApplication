@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Folder Include="Features\Application\" />
-    <Folder Include="Features\Auth\Interfaces\" />
-    <Folder Include="Features\Auth\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Acess.API.Domain\Access.API.Domain.csproj" />
+    <ProjectReference Include="..\Acess.API.Infrastructure\Access.API.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
