@@ -12,14 +12,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.17" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Acess.API.Application\Access.API.Application.csproj" />
+    <ProjectReference Include="..\Acess.API.Domain\Access.API.Domain.csproj" />
     <ProjectReference Include="..\Acess.API.Infrastructure\Access.API.Infrastructure.csproj" />
   </ItemGroup>
 

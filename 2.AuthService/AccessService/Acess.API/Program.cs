@@ -1,8 +1,13 @@
+using Access.API.Application;
 using Access.API.Domain.Entities;
+using Access.API.Infrastructure;
+using Access.API.Infrastructure.Data.Seed;
+using Access.API.Infrastructure.Data.Seed.Models;
 using Access.API.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -11,7 +16,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<AuthDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("KejaHuntConnection")
-));
+)); 
+builder.Services.Configure<SeederSettings>(
+    builder.Configuration.GetSection("DatabaseSeeder"));
+// Application layer services
+builder.Services.AddApplicationServices();
+// Infrastructure layer services (e.g., repositories)
+builder.Services.AddInfrastructureServices();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -46,7 +57,32 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 var app = builder.Build();
+//migrate on startup
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
 
+    var config = services.GetRequiredService<IConfiguration>();
+
+    try
+    {
+        var dbContext = services.GetRequiredService<AuthDbContext>();
+
+        await dbContext.Database.MigrateAsync();
+
+        var userManager = services.GetRequiredService<UserManager<AuthUser>>();
+        var roleManager = services.GetRequiredService<RoleManager<IdentityRole<long>>>();
+        var seederOptions = services.GetRequiredService<IOptions<SeederSettings>>();
+
+        await DatabaseSeeder.SeedAsync(dbContext, userManager, roleManager, seederOptions);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred during migration.");
+        throw;
+    }
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
