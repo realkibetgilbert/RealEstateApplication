@@ -15,32 +15,17 @@ namespace Access.API.Controllers.Auth.V1
             _authService = authService;
         }
         [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> RegisterUser(UserRegistrationDto expressWayPosUserDto)
-        {
-            var (isSuccess, result) = await _authService.RegisterUserAsync(expressWayPosUserDto);
-
-            if (isSuccess)
-                return Ok(result);
-
-            return BadRequest(result);
-        }
-
-        [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            var (isSuccess, result) = await _authService.LoginAsync(loginDto);
+            var response = await _authService.LoginAsync(loginDto);
 
-            if (isSuccess)
+            if (response.IsSuccess)
             {
-
-                var jsonRes = JsonConvert.SerializeObject(result);
-
-                return Content(jsonRes, "application/json");
+                return Ok(response); 
             }
 
-            return BadRequest(result);
+            return BadRequest(response); 
         }
     }
 }
