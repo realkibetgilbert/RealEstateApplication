@@ -5,7 +5,6 @@ using Access.API.Domain.Entities;
 using Access.API.Domain.Interfaces;
 using Access.API.Infrastructure.Caching;
 using Access.API.Infrastructure.Persistence;
-using Azure.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
