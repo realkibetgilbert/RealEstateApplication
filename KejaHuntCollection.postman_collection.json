@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "b19c6bf8-a834-4dbe-b8e7-c726b9f530ce",
+		"name": "KejaHuntCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13882743"
+	},
+	"item": [
+		{
+			"name": "1.Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"manager@kejahunt.com\",\r\n    \"password\": \"manager@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/auth/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.RefreshToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"manager@kejahunt.com\",\r\n  \"refreshToken\": \"0DS6F8SbroZ5w3pX622A/6DN9J/lLi0gFy/hP814Mv7HegGST1QhlSubHPpRDGRLUiEzvFbqmkbsqEYWxGZb\\u002Bg==\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/auth/refresh-token",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"auth",
+						"refresh-token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "https://localhost:8000",
+			"type": "default"
+		},
+		{
+			"key": "ACCESS_BASE_URL",
+			"value": "https://localhost:7252/api",
+			"type": "default"
+		}
+	]
+}
