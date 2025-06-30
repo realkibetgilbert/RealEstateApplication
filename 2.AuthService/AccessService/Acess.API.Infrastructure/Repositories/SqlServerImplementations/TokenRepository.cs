@@ -21,6 +21,7 @@ namespace Access.API.Infrastructure.Repositories.SqlServerImplementations
             var claims = new List<Claim>();
 
             claims.Add(new Claim(ClaimTypes.Email, user.Email));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
 
             foreach (var role in roles)
             {
@@ -51,5 +52,36 @@ namespace Access.API.Infrastructure.Repositories.SqlServerImplementations
             rng.GetBytes(randomBytes);
             return Convert.ToBase64String(randomBytes);
         }
+        public long GetUserIdToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
+
+            try
+            {
+                var principal = tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidIssuer = _configuration["Jwt:Issuer"],
+                    ValidAudience = _configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                }, out _);
+
+                var userIdClaim = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (string.IsNullOrEmpty(userIdClaim))
+                    throw new ArgumentException("User ID claim not found.");
+
+                return Convert.ToInt64(userIdClaim);
+            }
+            catch (Exception ex)
+            {
+                throw new SecurityTokenException("Invalid or expired token.", ex);
+            }
+        }
+
     }
 }

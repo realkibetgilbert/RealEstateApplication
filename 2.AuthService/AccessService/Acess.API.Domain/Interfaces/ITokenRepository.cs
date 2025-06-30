@@ -6,6 +6,6 @@ namespace Access.API.Domain.Interfaces
     {
         string CreateJwtToken(AuthUser user, List<string> roles);
         string GenerateRefreshToken();
-
+        long GetUserIdToken(string token);
     }
 }
