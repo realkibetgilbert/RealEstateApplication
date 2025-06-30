@@ -19,6 +19,13 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("KejaHuntConnecti
 )); 
 builder.Services.Configure<SeederSettings>(
     builder.Configuration.GetSection("DatabaseSeeder"));
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    var redisConnectionString = builder.Configuration.GetConnectionString("RedisConnection")
+        ?? builder.Configuration.GetConnectionString("Redis")
+        ?? "localhost:6379";
+    options.Configuration = redisConnectionString;
+});
 // Application layer services
 builder.Services.AddApplicationServices();
 // Infrastructure layer services (e.g., repositories)

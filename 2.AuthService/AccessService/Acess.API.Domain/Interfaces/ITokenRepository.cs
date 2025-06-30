@@ -5,5 +5,7 @@ namespace Access.API.Domain.Interfaces
     public interface ITokenRepository
     {
         string CreateJwtToken(AuthUser user, List<string> roles);
+        string GenerateRefreshToken();
+
     }
 }

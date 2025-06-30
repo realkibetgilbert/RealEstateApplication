@@ -1,5 +1,6 @@
 ﻿using Access.API.Application.DTOs.Auth;
 using Access.API.Application.Features.Auth.Interfaces;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -15,32 +16,28 @@ namespace Access.API.Controllers.Auth.V1
             _authService = authService;
         }
         [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> RegisterUser(UserRegistrationDto expressWayPosUserDto)
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
-            var (isSuccess, result) = await _authService.RegisterUserAsync(expressWayPosUserDto);
+            var response = await _authService.LoginAsync(loginDto);
 
-            if (isSuccess)
-                return Ok(result);
+            if (response.IsSuccess)
+            {
+                return Ok(response);
+            }
 
-            return BadRequest(result);
+            return BadRequest(response);
         }
 
         [HttpPost]
-        [Route("login")]
-        public async Task<IActionResult> Login(LoginDto loginDto)
+        [Route("refresh-token")]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshRequestDto requestDto)
         {
-            var (isSuccess, result) = await _authService.LoginAsync(loginDto);
+            var response = await _authService.RefreshTokenAsync(requestDto);
+            if (response.IsSuccess)
+                return Ok(response);
 
-            if (isSuccess)
-            {
-
-                var jsonRes = JsonConvert.SerializeObject(result);
-
-                return Content(jsonRes, "application/json");
-            }
-
-            return BadRequest(result);
+            return Unauthorized(response);
         }
     }
 }
