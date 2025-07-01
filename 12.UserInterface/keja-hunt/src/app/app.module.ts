@@ -8,11 +8,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { RegisterComponent } from './features/auth/register/register.component';
+import { TenantProfileComponent } from './features/tenant/tenant-profile/tenant-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    TenantProfileComponent
   ],
   imports: [
     BrowserModule,
