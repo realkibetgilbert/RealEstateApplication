@@ -1,0 +1,23 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.tenant-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.success-text {
+  color: green;
+}
+
+.error-text {
+  color: red;
+}

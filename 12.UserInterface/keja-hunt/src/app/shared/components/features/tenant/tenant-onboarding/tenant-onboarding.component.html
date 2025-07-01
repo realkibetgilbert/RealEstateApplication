@@ -1,0 +1,35 @@
+<div class="onboarding-wrapper">
+  <mat-horizontal-stepper [linear]="true" #stepper class="custom-stepper">
+    <mat-step [stepControl]="tenantProfileForm">
+      <ng-template matStepLabel>Tenant Profile</ng-template>
+      <app-tenant-profile [form]="tenantProfileForm" (completed)="stepper.next()"></app-tenant-profile>
+      <div class="step-actions">
+        <button mat-raised-button color="primary" (click)="submitProfile()" [disabled]="!tenantProfileForm.valid">Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Property Details</ng-template>
+      <div class="coming-soon">Coming Soon...</div>
+      <div class="step-actions">
+        <button mat-raised-button color="primary" (click)="stepper.next()">Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="paymentForm">
+      <ng-template matStepLabel>Payment Details</ng-template>
+      <div class="coming-soon">Coming Soon...</div>
+      <div class="step-actions">
+        <button mat-raised-button color="primary" (click)="stepper.next()">Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Summary</ng-template>
+      <div class="coming-soon">Coming Soon...</div>
+      <div class="step-actions">
+        <button mat-raised-button color="primary" (click)="submitAll()">Submit</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -1,29 +1,35 @@
-<div class="container">
-  <div class="mt-5">
-    <div class="col-12 col-md-6 col-lg-4 mx-auto">
-      <h1>Create Account</h1>
-      <form #form="ngForm" (ngSubmit)="onFormSubmit()">
-        <div class="mt-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="text" class="form-control" id="email" name="email" [(ngModel)]="model.email" required />
-        </div>
+<div class="register-root">
+  <div class="register-image"></div>
+  <div class="register-card-container">
+    <mat-card class="register-card">
+      <mat-card-title class="text-center">Register with Keja Hunt</mat-card-title>
+      <mat-card-subtitle class="text-center">Create a new account to get started</mat-card-subtitle>
 
-        <div class="mt-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="model.password" required />
-        </div>
+      <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" required />
+          <mat-error *ngIf="registerForm.get('email')?.hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="registerForm.get('email')?.hasError('email')">Invalid email format</mat-error>
+        </mat-form-field>
 
-        <div class="mt-3">
-          <button type="submit" class="btn btn-primary">Register</button>
-        </div>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" required />
+          <mat-error *ngIf="registerForm.get('password')?.hasError('required')">Password is required</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width mt-3" type="submit" [disabled]="registerForm.invalid">
+          Register
+        </button>
       </form>
 
-      <div *ngIf="successMessage" class="alert alert-success mt-3" role="alert">
-        {{ successMessage }}
+      <div *ngIf="successMessage" class="success-text mt-3">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="error-text mt-3">{{ errorMessage }}</div>
+
+      <div class="text-center mt-3">
+        Already have an account? <a class="text-primary" routerLink="/login">Login</a>
       </div>
-      <div *ngIf="errorMessage" class="alert alert-danger mt-3" role="alert">
-        {{ errorMessage }}
-      </div>
-    </div>
+    </mat-card>
   </div>
 </div>

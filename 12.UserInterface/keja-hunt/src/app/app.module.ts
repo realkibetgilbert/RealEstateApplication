@@ -10,13 +10,16 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { TenantProfileComponent } from './features/tenant/tenant-profile/tenant-profile.component';
+import { MaterialModule } from './shared/modules/material/material.module';
+import { TenantOnboardingComponent } from './shared/components/features/tenant/tenant-onboarding/tenant-onboarding.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    TenantProfileComponent
+    TenantProfileComponent,
+    TenantOnboardingComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,7 @@ import { TenantProfileComponent } from './features/tenant/tenant-profile/tenant-
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MaterialModule,
     ToastrModule.forRoot()
   ],
   providers: [],
