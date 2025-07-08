@@ -207,7 +207,6 @@ namespace Access.API.Application.Features.Auth.Services
 
             await _cache.RemoveAsync($"refresh_token:{userId}");
             await _cache.RemoveAsync($"auth_login_response:{userId}");
-
             return ServiceResponse<LogoutResponseDto>.Success(new LogoutResponseDto
             {
             });
