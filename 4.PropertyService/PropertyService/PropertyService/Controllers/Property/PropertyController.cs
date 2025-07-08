@@ -26,5 +26,36 @@ namespace Property.API.Controllers.Property
                 ? Ok(response)
                 : BadRequest(response);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPropertyById(long id)
+        {
+            var response = await _propertyService.GetPropertyByIdAsync(id);
+
+            return response.IsSuccess
+                ? Ok(response)
+                : NotFound(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePropertyById(long id)
+        {
+            var response = await _propertyService.DeletePropertyAsync(id);
+
+            return response.IsSuccess
+                ? Ok(response)
+                : NotFound(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateProperty([FromForm] PropertyToUpdateDto propertyToUpdateDto)
+        {
+            var response = await _propertyService.UpdatePropertyAsync(propertyToUpdateDto);
+
+            return response.IsSuccess
+                ? Ok(response)
+                : BadRequest(response);
+        }
+
     }
 }

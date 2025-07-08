@@ -7,5 +7,6 @@ namespace Property.API.Application.Mappers.Prop.Interfaces
     {
         Task<Properties> ToDomain(PropertyToCreateDto propertyToCreateDto);
         Task<PropertyToDisplayDto> ToDomain(Properties property);
+        Task<Properties> ToDomain(PropertyToUpdateDto propertyToUpdateDto);
     }
 }

@@ -36,5 +36,79 @@ namespace Property.API.Application.Features.Prop.Services
                 return ServiceResponse<PropertyToDisplayDto>.Failure();
             }
         }
+
+        public async Task<ServiceResponse<PropertyToDisplayDto>> DeletePropertyAsync(long Id)
+        {
+            try
+            {
+                var property = await _propertyRepository.GetByIdAsync(Id);
+
+                if (property == null)
+                {
+                    return ServiceResponse<PropertyToDisplayDto>.Failure();
+                }
+
+                await _propertyRepository.DeleteAsync(Id);
+
+                var propToDisplay = await _propertyMapper.ToDomain(property);
+
+                return ServiceResponse<PropertyToDisplayDto>.Success(propToDisplay);
+
+            }
+            catch (Exception)
+            {
+                //TODO:log here...
+                return ServiceResponse<PropertyToDisplayDto>.Failure();
+            }
+        }
+
+        public async Task<ServiceResponse<PropertyToDisplayDto>> GetPropertyByIdAsync(long Id)
+        {
+            try
+            {
+                var property = await _propertyRepository.GetByIdAsync(Id);
+
+                if (property == null)
+                {
+                    return ServiceResponse<PropertyToDisplayDto>.Failure();
+                }
+
+                var propertyToDisplayDto = await _propertyMapper.ToDomain(property);
+
+                return ServiceResponse<PropertyToDisplayDto>.Success(propertyToDisplayDto);
+            }
+            catch (Exception)
+            {
+                //logging
+                return ServiceResponse<PropertyToDisplayDto>.Failure();
+
+            }
+        }
+
+        public async Task<ServiceResponse<PropertyToDisplayDto>> UpdatePropertyAsync(PropertyToUpdateDto propertyToUpdateDto)
+        {
+            try
+            {
+                var updatedDomainProperty = await _propertyMapper.ToDomain(propertyToUpdateDto);
+
+                var updatedProperty = await _propertyRepository.UpdateAsync(updatedDomainProperty);
+
+                if (updatedProperty == null)
+                {
+                    return ServiceResponse<PropertyToDisplayDto>.Failure();
+                }
+
+                var propertyToDisplayDto = await _propertyMapper.ToDomain(updatedProperty);
+
+                return ServiceResponse<PropertyToDisplayDto>.Success(propertyToDisplayDto);
+
+
+            }
+            catch (Exception)
+            {
+                //TODO:log here...
+                return ServiceResponse<PropertyToDisplayDto>.Failure();
+            }
+        }
     }
 }

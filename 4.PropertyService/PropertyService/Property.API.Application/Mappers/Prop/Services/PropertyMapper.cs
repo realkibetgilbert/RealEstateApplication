@@ -42,5 +42,27 @@ namespace Property.API.Application.Mappers.Prop.Services
 
             return await Task.FromResult(dto);
         }
+
+        public Task<Properties> ToDomain(PropertyToUpdateDto dto)
+        {
+            byte[]? imageBytes = null;
+
+            if (dto.Image != null)
+            {
+                using var ms = new MemoryStream();
+                dto.Image.CopyTo(ms);
+                imageBytes = ms.ToArray();
+            }
+            return Task.FromResult(new Properties
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Location = dto.Location,
+                Type = dto.Type,
+                OwnerEmail = dto.OwnerEmail,
+                Image = imageBytes
+            });
+        }
+
     }
 }
