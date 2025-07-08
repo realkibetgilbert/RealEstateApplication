@@ -7,58 +7,259 @@
 	},
 	"item": [
 		{
-			"name": "1.Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"userName\": \"manager@kejahunt.com\",\r\n    \"password\": \"manager@123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Property",
+			"item": [
+				{
+					"name": "1.Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Name",
+									"value": "Sunset Apartments",
+									"type": "text"
+								},
+								{
+									"key": "Location",
+									"value": "Kilimani, Nairobi",
+									"type": "text"
+								},
+								{
+									"key": "Type",
+									"value": "Residential",
+									"type": "text"
+								},
+								{
+									"key": "OwnerEmail",
+									"value": "kibetgilly354@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "Image",
+									"type": "file",
+									"src": "/C:/Users/LENOVO/Desktop/download.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PROPERTY_URL}}/api/property",
+							"host": [
+								"{{PROPERTY_URL}}"
+							],
+							"path": [
+								"api",
+								"property"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{BASE_URL}}/auth/login",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"auth",
-						"login"
-					]
+				{
+					"name": "2.Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Name",
+									"value": "Sunset Apartments",
+									"type": "text"
+								},
+								{
+									"key": "Location",
+									"value": "Kilimani, Nairobi",
+									"type": "text"
+								},
+								{
+									"key": "Type",
+									"value": "Residential",
+									"type": "text"
+								},
+								{
+									"key": "OwnerEmail",
+									"value": "kibetgilly354@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "Image",
+									"type": "file",
+									"src": "/C:/Users/LENOVO/Desktop/download.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{PROPERTY_URL}}/api/property",
+							"host": [
+								"{{PROPERTY_URL}}"
+							],
+							"path": [
+								"api",
+								"property"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/property/3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"property",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PROPERTY_URL}}/api/property/1",
+							"host": [
+								"{{PROPERTY_URL}}"
+							],
+							"path": [
+								"api",
+								"property",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "2.RefreshToken",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"manager@kejahunt.com\",\r\n  \"refreshToken\": \"0DS6F8SbroZ5w3pX622A/6DN9J/lLi0gFy/hP814Mv7HegGST1QhlSubHPpRDGRLUiEzvFbqmkbsqEYWxGZb\\u002Bg==\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Auth",
+			"item": [
+				{
+					"name": "1.Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"manager@kejahunt.com\",\r\n    \"password\": \"manager@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{BASE_URL}}/auth/refresh-token",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"auth",
-						"refresh-token"
-					]
+				{
+					"name": "2.RefreshToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"manager@kejahunt.com\",\r\n  \"refreshToken\": \"0DS6F8SbroZ5w3pX622A/6DN9J/lLi0gFy/hP814Mv7HegGST1QhlSubHPpRDGRLUiEzvFbqmkbsqEYWxGZb\\u002Bg==\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/refresh-token",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"newuseer@gmail.com\",\r\n  \"password\": \"@Pass1223\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"newuseer@gmail.com\",\r\n  \"password\": \"@Pass1223\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/logout",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Tenant",
+			"item": []
 		}
 	],
 	"variable": [
@@ -70,6 +271,16 @@
 		{
 			"key": "ACCESS_BASE_URL",
 			"value": "https://localhost:7252/api",
+			"type": "default"
+		},
+		{
+			"key": "ACCESS_TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJtYW5hZ2VyQGtlamFodW50LmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1hbmFnZXIiLCJleHAiOjE3NTEyODg0NzEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzI1MiIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzI1MiJ9.hMIRly_0wsYgsZ4Bj3Z8ccyBq7htmTycd7nJ-NIzErQ",
+			"type": "default"
+		},
+		{
+			"key": "PROPERTY_URL",
+			"value": "https://localhost:7079",
 			"type": "default"
 		}
 	]
