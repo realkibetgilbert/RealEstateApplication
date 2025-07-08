@@ -6,12 +6,10 @@ namespace Property.API.Domain.Interfaces
     {
         Task<Properties> CreateAsync(Properties property);
 
-        Task<IEnumerable<Properties>> GetAllAsync();
-
         Task<Properties?> GetByIdAsync(long id);
 
         Task<Properties?> UpdateAsync(Properties property);
 
-        Task<Properties?> DeleteAync(long id);
+        Task<Properties?> DeleteAsync(long id);
     }
 }

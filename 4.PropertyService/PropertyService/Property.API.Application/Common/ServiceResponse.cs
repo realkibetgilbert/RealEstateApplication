@@ -1,4 +1,4 @@
-﻿namespace Tenant.API.Application.Common
+﻿namespace Property.API.Application.Common
 {
     public class ServiceResponse<T>
     {

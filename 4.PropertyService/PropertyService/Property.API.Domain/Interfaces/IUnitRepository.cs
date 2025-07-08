@@ -7,7 +7,7 @@ namespace Property.API.Domain.Interfaces
         Task<Unit> CreateUnitAsync(Unit unit);
         Task<Unit?> GetUnitByIdAsync(long id);
         Task<Unit?> UpdateAsync(Unit unit);
-        Task<Unit?> DeleteAync(long id);
+        Task<Unit?> DeleteAsync(long id);
         Task<IEnumerable<Unit>> GetUnitsByPropertyIdAsync(long propertyId);
     }
 }

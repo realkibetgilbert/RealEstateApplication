@@ -23,7 +23,7 @@ export class TenantProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Use the injected form instead of creating a new one
+    
     const user = this.authService.getUser();
     if (user?.email) {
       this.form.patchValue({ email: user.email });
