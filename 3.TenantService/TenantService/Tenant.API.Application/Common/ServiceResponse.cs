@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tenant.API.Application.Common
+﻿namespace Tenant.API.Application.Common
 {
     public class ServiceResponse<T>
     {
