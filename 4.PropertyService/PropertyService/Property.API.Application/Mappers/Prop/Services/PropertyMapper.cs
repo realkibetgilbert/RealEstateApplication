@@ -43,7 +43,7 @@ namespace Property.API.Application.Mappers.Prop.Services
             return await Task.FromResult(dto);
         }
 
-        public Task<Properties> ToDomain(PropertyToUpdateDto dto)
+        public async Task<Properties> ToDomain(PropertyToUpdateDto dto)
         {
             byte[]? imageBytes = null;
 
@@ -53,7 +53,7 @@ namespace Property.API.Application.Mappers.Prop.Services
                 dto.Image.CopyTo(ms);
                 imageBytes = ms.ToArray();
             }
-            return Task.FromResult(new Properties
+            return await Task.FromResult(new Properties
             {
                 Id = dto.Id,
                 Name = dto.Name,
