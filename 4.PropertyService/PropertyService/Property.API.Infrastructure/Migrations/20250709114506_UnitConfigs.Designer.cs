@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Property.API.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using Property.API.Infrastructure.Persistence;
 namespace Property.API.Infrastructure.Migrations
 {
     [DbContext(typeof(PropertyDbContext))]
-    partial class ProperyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250709114506_UnitConfigs")]
+    partial class UnitConfigs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
